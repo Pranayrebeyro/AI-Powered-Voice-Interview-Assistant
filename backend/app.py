@@ -119,7 +119,7 @@ def start_interview():
     return stream_audio(question), {"Content-Type": "text/plain"}
 
 def speech_to_text(audio_path):
-    transcript = aai.Transcriber()
+    transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(audio_path)
     return transcript.text if transcript.text else ""
 
@@ -175,4 +175,5 @@ def get_feedback():
     return jsonify({"success": True, "feedback": feedback})
     
 
-app.run(debug=True, port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
